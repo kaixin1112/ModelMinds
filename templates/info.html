@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Recycling Info</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .subheader {
+            margin-top: 5px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        #camera {
+            margin-top: 30px;
+            width: 320px;
+            height: 240px;
+            background: #ddd;
+        }
+
+        .item {
+            margin-top: 20px;
+        }
+
+        .item label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .controls {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .controls button {
+            width: 30px;
+            height: 30px;
+            margin: 0 5px;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .complete-button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .complete-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>Welcome {{ username }}!</header>
+    <div class="subheader">Gmail: {{ email }}</div>
+
+    <div id="camera">
+        <video id="video" width="320" height="240" autoplay></video>
+    </div>
+
+    {% for item in ['Plastic', 'Paper', 'Bottle'] %}
+    <div class="item">
+        <label>{{ item }}</label>
+        <div class="controls">
+            <button onclick="changeQty('{{ item }}', -1)">-</button>
+            <span id="{{ item }}Qty">0</span>
+            <button onclick="changeQty('{{ item }}', 1)">+</button>
+            <span> @ RM<span id="{{ item }}Price">{{ prices[item] }}</span></span>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="total">
+        Total Items: <span id="totalItems">0</span> <br>
+        Total Amount: RM<span id="totalAmount">0.00</span>
+    </div>
+
+    <button class="complete-button" onclick="alert('Transaction Completed!')">Complete</button>
+
+    <script>
+        const prices = {
+            Plastic: 0.10,
+            Paper: 0.05,
+            Bottle: 0.15
+        };
+
+        const quantities = {
+            Plastic: 0,
+            Paper: 0,
+            Bottle: 0
+        };
+
+        function changeQty(type, delta) {
+            quantities[type] = Math.max(0, quantities[type] + delta);
+            document.getElementById(`${type}Qty`).innerText = quantities[type];
+            updateTotals();
+        }
+
+        function updateTotals() {
+            let totalItems = 0;
+            let totalAmount = 0;
+            for (let type in quantities) {
+                totalItems += quantities[type];
+                totalAmount += quantities[type] * prices[type];
+            }
+            document.getElementById('totalItems').innerText = totalItems;
+            document.getElementById('totalAmount').innerText = totalAmount.toFixed(2);
+        }
+
+        // Live camera preview
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                document.getElementById('video').srcObject = stream;
+            })
+            .catch(err => console.error("Camera error:", err));
+    </script>
+</body>
+</html>

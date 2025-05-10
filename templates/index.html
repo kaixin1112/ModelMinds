@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background-color: #f0f4f7;
+        }
+        header {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        #reader {
+            width: 300px;
+            margin: 20px 0;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+        }
+        .action-button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .action-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>Scan Your Recycling QR Code</header>
+    <div id="reader"></div>
+    <button class="action-button" onclick="window.location.href='/info'">Go to Info</button>
+
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // Redirect with scanned QR code data
+            window.location.href = `/info?data=${encodeURIComponent(decodedText)}`;
+        }
+
+        new Html5Qrcode("reader")
+            .start({ facingMode: "environment" }, {
+                fps: 10,
+                qrbox: 250
+            }, onScanSuccess);
+    </script>
+</body>
+</html>
