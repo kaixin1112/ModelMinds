@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme: Eco Bloom */
+    --background: 120 60% 97%; /* Very Light Mint Green */
+    --foreground: 150 40% 20%; /* Deep Teal */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 150 40% 20%; /* Deep Teal */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 40% 20%;
+
+    --primary: 170 65% 45%; /* Vibrant Teal */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 170 50% 92%; /* Light Teal Tint */
+    --secondary-foreground: 170 50% 30%; /* Medium Teal */
+
+    --muted: 120 40% 95%; /* Very Light Minty Green */
+    --muted-foreground: 150 30% 45%; /* Muted Teal */
+
+    --accent: 25 95% 60%; /* Vibrant Orange */
+    --accent-foreground: 25 60% 15%; /* Dark Brown for Orange */
+
+    --destructive: 0 80% 60%; /* Clear Red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 25% 88%; /* Soft Tealish Gray */
+    --input: 150 25% 88%;
+    --ring: 170 65% 45%; /* Vibrant Teal for focus */
+
+    --radius: 0.75rem; /* Slightly more rounded */
+
+    /* Sidebar specific theme - Light */
+    --sidebar-background: 120 60% 95%; /* Slightly darker than main BG */
+    --sidebar-foreground: 150 40% 20%; /* Deep Teal */
+    --sidebar-primary: 170 65% 45%; /* Vibrant Teal */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 25 80% 93%; /* Very Light Orange for hover */
+    --sidebar-accent-foreground: 25 70% 40%; /* Darker Orange for text on hover */
+    --sidebar-border: 150 25% 85%; /* Slightly darker border */
+    --sidebar-ring: 170 65% 45%;
+
+    /* Chart Colors - Light, Vibrant & Eco */
+    --chart-1: 170 65% 45%; /* Vibrant Teal (Primary) */
+    --chart-2: 25 95% 60%;  /* Vibrant Orange (Accent) */
+    --chart-3: 190 70% 55%; /* Sky Blue */
+    --chart-4: 280 60% 65%; /* Soft Lavender */
+    --chart-5: 0 75% 70%;   /* Soft Coral */
+  }
+
+  .dark {
+    /* Dark Theme: Midnight Grove */
+    --background: 150 15% 8%; /* Very Dark Desaturated Teal */
+    --foreground: 150 30% 88%; /* Light Minty Teal */
+
+    --card: 150 15% 11%; /* Slightly lighter than BG */
+    --card-foreground: 150 30% 88%;
+
+    --popover: 150 15% 11%;
+    --popover-foreground: 150 30% 88%;
+
+    --primary: 170 70% 60%; /* Brighter Teal */
+    --primary-foreground: 170 20% 10%; /* Dark contrast for primary button */
+
+    --secondary: 150 25% 18%; /* Dark Teal base for secondary */
+    --secondary-foreground: 150 30% 78%; /* Light text on dark secondary */
+
+    --muted: 150 10% 15%; /* Dark muted Teal */
+    --muted-foreground: 150 25% 68%; /* Lighter muted Teal */
+
+    --accent: 25 90% 68%; /* Vibrant Orange (slightly lighter for dark) */
+    --accent-foreground: 25 40% 12%; /* Dark contrast for accent button */
+
+    --destructive: 0 75% 68%; /* Adjusted destructive for dark */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 10% 22%; /* Dark Teal-Gray for borders */
+    --input: 150 10% 22%;
+    --ring: 170 70% 60%;  /* Brighter Teal for focus */
+    
+    /* Sidebar specific theme - Dark */
+    --sidebar-background: 150 15% 6%; /* Even darker than main BG */
+    --sidebar-foreground: 150 30% 88%; /* Light Minty Teal */
+    --sidebar-primary: 170 70% 60%; /* Brighter Teal */
+    --sidebar-primary-foreground: 170 20% 10%; /* Dark contrast */
+    --sidebar-accent: 25 30% 25%; /* Dark Orange tint for hover */
+    --sidebar-accent-foreground: 25 85% 78%; /* Light Orange for text on hover */
+    --sidebar-border: 150 10% 19%; /* Darker border */
+    --sidebar-ring: 170 70% 60%;
+
+    /* Chart Colors - Dark, Vibrant & Eco */
+    --chart-1: 170 70% 60%; /* Brighter Teal */
+    --chart-2: 25 90% 68%;  /* Vibrant Orange */
+    --chart-3: 190 65% 65%; /* Brighter Sky Blue */
+    --chart-4: 280 65% 70%; /* Brighter Soft Lavender */
+    --chart-5: 0 70% 75%;   /* Brighter Soft Coral */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1; /* Enable common ligatures and contextual alternates */
+  }
+}
