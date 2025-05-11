@@ -53,7 +53,7 @@ Follow these steps to get the SmartCycle application up and running on your loca
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/kaixin1112/ModelMinds.git]
+git clone https://github.com/kaixin1112/ModelMinds.git
 cd ModelMinds
 ```
 *(Replace `your-username/smartcycle.git` with the actual repository URL if different)*
